@@ -1,11 +1,17 @@
 [build]
-command = "npm run build"
-publish = "frontend/.next"
-functions = "netlify/functions"
-
+  command = "cd frontend && npm ci && npm run build"
+  publish = "frontend/.next"
+  environment = { NODE_VERSION = "18" }
 
 [[redirects]]
-from = "/api/*"
-to = "https://<your-render-service>.onrender.com/:splat"
-status = 200
-force = true
+  from = "/api/*"
+  to = "https://<YOUR_RENDER_SERVICE>.onrender.com/:splat"
+  status = 200
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "same-origin"
