@@ -1,0 +1,73 @@
+# Render infrastructure for Website Intelligence Platform
+# Backend API + Background Worker
+services:
+  - type: web
+    name: ai-intel-backend
+    env: docker
+    repo: https://github.com/Joeches/Website-Intelligence-Platform
+    branch: main
+    dockerfilePath: backend/Dockerfile
+    plan: starter
+    autoDeploy: true
+
+    # Docker handles build; no commands needed
+    buildCommand: ""
+    startCommand: ""
+
+    envVars:
+      - key: FIREBASE_PROJECT_ID
+        sync: false
+      - key: FIREBASE_CLIENT_EMAIL
+        sync: false
+      - key: FIREBASE_PRIVATE_KEY
+        sync: false
+      - key: FIREBASE_DATABASE_URL
+        sync: false
+      - key: STRIPE_API_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: HUGGINGFACE_API_TOKEN
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: ALLOWED_ORIGINS
+        sync: false
+
+    healthCheckPath: /health
+
+    scale:
+      minInstances: 1
+      maxInstances: 3
+
+  - type: worker
+    name: ai-intel-worker
+    env: docker
+    repo: https://github.com/Joeches/Website-Intelligence-Platform
+    branch: main
+    dockerfilePath: backend/Dockerfile
+    plan: starter
+    autoDeploy: true
+
+    # Worker is triggered by its CMD in Dockerfile override
+    startCommand: "python worker.py"
+
+    envVars:
+      - key: FIREBASE_PROJECT_ID
+        sync: false
+      - key: FIREBASE_CLIENT_EMAIL
+        sync: false
+      - key: FIREBASE_PRIVATE_KEY
+        sync: false
+      - key: FIREBASE_DATABASE_URL
+        sync: false
+      - key: STRIPE_API_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: HUGGINGFACE_API_TOKEN
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: ALLOWED_ORIGINS
+        sync: false
