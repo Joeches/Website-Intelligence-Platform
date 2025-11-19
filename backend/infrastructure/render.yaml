@@ -3,7 +3,7 @@ services:
   - type: web
     name: ai-intel-backend
     env: docker
-    repo: https://github.com/<your-org>/ai-website-intelligence-platform
+    repo: https://github.com/Joeches/Website-Intelligence-Platform/tree/main
     branch: main
     dockerfilePath: backend/Dockerfile
     plan: starter
