@@ -1,6 +1,11 @@
-# Render infrastructure for Website Intelligence Platform
+# .render/render.yaml
+# Render service definitions for Website Intelligence Platform
 # Backend API + Background Worker
+
 services:
+  # -----------------------
+  # Web Service (FastAPI)
+  # -----------------------
   - type: web
     name: ai-intel-backend
     env: docker
@@ -10,10 +15,11 @@ services:
     plan: starter
     autoDeploy: true
 
-    # Docker handles build; no commands needed
+    # Docker handles build; no additional build commands needed
     buildCommand: ""
-    startCommand: ""
+    startCommand: "uvicorn main:app --host 0.0.0.0 --port $PORT"
 
+    # Environment variables (set on Render dashboard)
     envVars:
       - key: FIREBASE_PROJECT_ID
         sync: false
@@ -34,12 +40,17 @@ services:
       - key: ALLOWED_ORIGINS
         sync: false
 
+    # Health check path
     healthCheckPath: /health
 
+    # Scaling
     scale:
       minInstances: 1
       maxInstances: 3
 
+  # -----------------------
+  # Worker Service
+  # -----------------------
   - type: worker
     name: ai-intel-worker
     env: docker
@@ -49,9 +60,10 @@ services:
     plan: starter
     autoDeploy: true
 
-    # Worker is triggered by its CMD in Dockerfile override
+    # Override CMD for worker
     startCommand: "python worker.py"
 
+    # Environment variables (same as web)
     envVars:
       - key: FIREBASE_PROJECT_ID
         sync: false
