@@ -6,7 +6,7 @@ services:
     env: docker
     repo: https://github.com/Joeches/Website-Intelligence-Platform
     branch: main
-    dockerfilePath: backend/Dockerfile   # ✅ points to backend Dockerfile
+    dockerfilePath: Dockerfile   # ✅ points to backend Dockerfile
     plan: starter
     autoDeploy: true
 
