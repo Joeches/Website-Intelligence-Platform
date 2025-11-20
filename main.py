@@ -11,6 +11,10 @@ app = FastAPI(title="AI Website Intelligence Platform - Backend")
 async def root():
     return {"message": "AI Website Intelligence Platform Backend is running! 🚀", "docs": "/docs"}
 
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    return {"status": "ok"}
+
 # CORS
 origins = config.ALLOWED_ORIGINS.split(",") if config.ALLOWED_ORIGINS else ["*"]
 app.add_middleware(
