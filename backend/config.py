@@ -2,6 +2,8 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
+FIREBASE_SERVICE_ACCOUNT = os.getenv("FIREBASE_SERVICE_ACCOUNT") 
+
 FIREBASE_PROJECT_ID = os.getenv("FIREBASE_PROJECT_ID")
 FIREBASE_CLIENT_EMAIL = os.getenv("FIREBASE_CLIENT_EMAIL")
 FIREBASE_PRIVATE_KEY = os.getenv("FIREBASE_PRIVATE_KEY")
