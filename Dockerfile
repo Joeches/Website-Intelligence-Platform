@@ -5,6 +5,7 @@ WORKDIR /app
 # system deps required by some libs (reportlab)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential libjpeg-dev zlib1g-dev \
+    pkg-config libcairo2-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies first for caching
@@ -20,6 +21,3 @@ EXPOSE 8000
 
 # Default CMD for web service
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
-
-
-
