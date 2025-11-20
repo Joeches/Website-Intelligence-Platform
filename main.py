@@ -7,6 +7,10 @@ from backend.routers import auth, stripe_webhooks, stripe_checkout, scan, ai_pro
 
 app = FastAPI(title="AI Website Intelligence Platform - Backend")
 
+@app.get("/")
+async def root():
+    return {"message": "AI Website Intelligence Platform Backend is running! 🚀", "docs": "/docs"}
+
 # CORS
 origins = config.ALLOWED_ORIGINS.split(",") if config.ALLOWED_ORIGINS else ["*"]
 app.add_middleware(
