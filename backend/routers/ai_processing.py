@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends
 from pydantic import BaseModel
-from middleware.firebase_auth import verify_token_header
-from services.ai_huggingface import extract_keywords
-from services.ai_groq import rewrite_seo
+from backend.middleware.firebase_auth import verify_token_header
+from backend.services.ai_huggingface import extract_keywords
+from backend.services.ai_groq import rewrite_seo
 
 router = APIRouter()
 
