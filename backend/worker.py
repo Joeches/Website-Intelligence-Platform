@@ -1,7 +1,7 @@
 # Minimal example worker entrypoint for background tasks (optional)
 import asyncio
 import time
-from utils.logger import logger
+from backend.utils.logger import logger
 
 async def main():
     logger.info("Worker started")
