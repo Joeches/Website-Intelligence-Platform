@@ -1,14 +1,24 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import config
 
-# Import routers
-from routers import auth, stripe_webhooks, stripe_checkout, scan, ai_processing, pdf, usage
+import config  # USE THIS NOW
+
+# updated imports since everything is in backend/
+from backend.routers import (
+    auth,
+    stripe_webhooks,
+    stripe_checkout,
+    scan,
+    ai_processing,
+    pdf,
+    usage,
+)
 
 app = FastAPI(title="AI Website Intelligence Platform - Backend")
 
 # CORS
 origins = config.ALLOWED_ORIGINS.split(",") if config.ALLOWED_ORIGINS else ["*"]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -17,7 +27,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Routers
+# ROUTERS (must prefix properly)
 app.include_router(auth.router, prefix="/auth", tags=["auth"])
 app.include_router(stripe_checkout.router, prefix="/stripe", tags=["stripe"])
 app.include_router(stripe_webhooks.router, prefix="/stripe", tags=["stripe-webhooks"])
