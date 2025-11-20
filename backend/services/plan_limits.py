@@ -1,4 +1,4 @@
-from services.firestore_client import get_user_usage, increment_usage
+from backend.services.firestore_client import get_user_usage, increment_usage
 
 async def check_and_consume_quota(uid: str) -> bool:
     usage = await get_user_usage(uid)
