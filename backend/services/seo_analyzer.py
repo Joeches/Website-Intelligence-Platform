@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
-from backend.services.ai_huggingface import extract_keywords
-from backend.services.accessibility_checker import wcag_basic_checks
+from services.ai_huggingface import extract_keywords
+from services.accessibility_checker import wcag_basic_checks
 
 async def analyze(url: str, html: str) -> dict:
     soup = BeautifulSoup(html, "html.parser")
