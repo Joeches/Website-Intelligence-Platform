@@ -1,6 +1,6 @@
 import httpx
 from bs4 import BeautifulSoup
-from utils.url_normalizer import normalize_url
+from backend.utils.url_normalizer import normalize_url
 
 async def crawl_url(url: str, timeout: int = 10) -> str:
     url = normalize_url(url)
