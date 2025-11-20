@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, Response
 from backend.middleware.firebase_auth import verify_token_header
-from services.pdf_generator import generate_pdf_from_result
+from backend.services.pdf_generator import generate_pdf_from_result
 from pydantic import BaseModel
 
 router = APIRouter()
