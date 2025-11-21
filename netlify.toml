@@ -1,6 +1,7 @@
 [build]
+  base = "frontend"
   command = "npm install && npm run build"
-  publish = ".next"
+  publish = "frontend/.next"
   environment = { NODE_VERSION = "18" }
 
 [[redirects]]
