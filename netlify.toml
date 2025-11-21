@@ -1,16 +1,17 @@
 [build]
-base = "frontend"
-command = "npm install && npm run build"
-publish = ".next"
-environment = { NODE_VERSION = "18" }
+  command = "npm install && npm run build"
+  publish = ".next"
+  environment = { NODE_VERSION = "18" }
+
 [[redirects]]
-from = "/api/*"
-to = "https://website-intelligence-platform.onrender.com"
-status = 200
-force = true
+  from = "/api/*"
+  to = "https://website-intelligence-platform.onrender.com"
+  status = 200
+  force = true
+
 [[headers]]
-for = "/*"
-[headers.values]
-X-Frame-Options = "DENY"
-X-Content-Type-Options = "nosniff"
-Referrer-Policy = "same-origin"
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "same-origin"
